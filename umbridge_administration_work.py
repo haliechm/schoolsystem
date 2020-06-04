@@ -1,15 +1,17 @@
 import os
 import starting_menu
+import random
+import pickle
 from read_file import read_file
 
 def umbridge_administration_work():
 	print("\nAh, Professor Umbridge, so nice to see you again. Here lies the source of your power.\nAre you feeling like expelling Harry Potter or erasing Hogwarts' existence today?\n\n")
 
 	menu = {}
-	menu["1"] = "Expel a student"
+	menu["1"] = "Expel a random student"
 	menu["2"] = "Delete a school"
 	menu["3"] = "Delete all schools"
-	menu["4"] = "Fire a professor"
+	menu["4"] = "Fire a random professor"
 	menu["5"] = "Exit"
 
 	for k,v in menu.items():
@@ -18,7 +20,54 @@ def umbridge_administration_work():
 	user_input = input()
 
 	if(user_input == "1"):
-		print("expelling a student")
+		os.system("clear")
+		print("OOOOOH Umbridge, would you like to expel a completely random student? It could be a lot of fun...\n")
+		lil_menu = {}
+		lil_menu["1"] = "Yes, expel away"
+		lil_menu["2"] = "No, not today"
+
+		for k,v in lil_menu.items():
+			print("{}) {}".format(k, v))
+
+
+		user_input = input()
+		if user_input == "1":
+			schools = read_file("Schools.txt")
+			i=0
+			for school in schools:
+				i += 1
+
+			rand_int = random.randint(0, i-1)
+			j = 0
+			skool = ""
+			for school in schools:
+				if rand_int == j:
+					skool = school[1] 
+
+			infile = open(skool, "rb")
+			data_dict = pickle.load(infile)
+			num_of_students = len(data_dict["Students"])
+			rand_int = random.randint(0, num_of_students-1)
+
+			del data_dict["Students"][rand_int]
+			infile.close()
+
+			outfile = open(skool, "wb")
+			pickle.dump(data_dict, outfile)
+			outfile.close()
+
+			os.system("clear")
+			print("Success! Student successfully expelled\n")
+			umbridge_administration_work()
+
+			
+		elif user_input == "2":
+			os.system("clear")
+			umbridge_administration_work()
+		else:
+			os.system("clear")
+			print(">>>>>ERROR 409: Invalid input")
+			umbridge_administration_work()
 	elif(user_input == "2"):
 		school = delete_a_school()
 		os.system("clear")
@@ -31,7 +80,54 @@ def umbridge_administration_work():
 		print("Good work, Umbridge! You have successfully erased the existence of all schools.")
 		umbridge_administration_work()
 	elif(user_input == "4"):
-		print("firing a professor")
+		os.system("clear")
+		print("OooOh, Professor Umbridge... shall we fire a completely random professor?\n")
+		lil_menu = {}
+		lil_menu["1"] = "Yes, of course"
+		lil_menu["2"] = "No, not right now"
+
+		for k,v in lil_menu.items():
+			print("{}) {}".format(k, v))
+
+		user_input = input()
+		if user_input == "1":
+			os.system("clear")
+			schools = read_file("Schools.txt")
+			i=0
+			for school in schools:
+				i += 1
+			rand_int = random.randint(0, i-1)
+			j=0
+			skool = ""
+			for school in schools:
+				if rand_int == j:
+					skool = school[1]
+
+
+			infile = open(skool, "rb")
+			data_dict = pickle.load(infile)
+			num_of_students = len(data_dict["Professors"])
+			rand_int = random.randint(0, num_of_students-1)
+
+			del data_dict["Professors"][rand_int]
+			infile.close()
+
+			outfile = open(skool, "wb")
+			pickle.dump(data_dict, outfile)
+			outfile.close()
+
+			os.system("clear")
+			print(">>>>>Success! Professor successfully fired\n")
+			umbridge_administration_work()
+			
+		elif user_input == "2":
+			os.system("clear")
+			umbridge_administration_work()
+
+		else:
+			os.system("clear")
+			print(">>>>>ERROR 388: Invalid input\n")
+			umbridge_administration_work()
 	elif(user_input == "5"):
 		os.system("clear")	
 		starting_menu.starting_menu()	

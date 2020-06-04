@@ -7,7 +7,7 @@ Has a Harry Potter twist on it (I was making this while watching Harry Potter ;p
 
 **Professor Dolores' password:** I</3HarryPotter
 
-**Login to Example_School-** **Username:** Example_School66 **Password:** password
+**Login to Example_School-** **Username:** Example_School34 **Password:** password
 Example_School cannot be deleted completely by Umbridge | You can expel/add students/professors, etc to Example_School though
 
 To view project
