@@ -55,7 +55,7 @@ def delete_all_schools():
 
 	f = open("Schools.txt", "w")
 	for line in lines:
-		if line == ("{}\t{}\t{}\n".format("Example_School", "Example_School66", "password")):
+		if line == ("{}\t{}\t{}\n".format("Example_School", "Example_School34", "password")):
 			f.write(line)
 	f.close()
 
