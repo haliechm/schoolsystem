@@ -1,4 +1,3 @@
 Example_School	Example_School34	password
-Halie	Halie90	Chmura
-Go	Go27	Lions
-Go	Go80	TarHeels
+go	go58	heels
+Halie	Halie75	chmurz

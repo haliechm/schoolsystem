@@ -81,10 +81,8 @@ def umbridge_administration_work():
 		print(print_statement)
 		umbridge_administration_work()
 	elif(user_input == "3"):
-		delete_all_schools()
 		os.system("clear")
-		print("Good work, Umbridge! You have successfully erased the existence of all schools.")
-		umbridge_administration_work()
+		delete_all_schools()
 	elif(user_input == "4"):
 		os.system("clear")
 		print("OooOh, Professor Umbridge... shall we fire a completely random professor?\n")
@@ -143,23 +141,46 @@ def umbridge_administration_work():
 		umbridge_administration_work()
 
 def delete_all_schools():
-	schools = read_file("Schools.txt")
-	for school in schools:
-		if school[0] != "Example_School":
-			try:
-				os.remove("" + school[1])
-			except RuntimeError:
-				continue
+	os.system("clear")
+	print("Are you completely sure you want to delete all schools? There's no going back.\n")
+	lil_menu = {}
+	lil_menu["1"] = "Yes, I'm sure"
+	lil_menu["2"] = "Nevermind."
 
-	f = open("Schools.txt", "r")
-	lines = f.readlines()
-	f.close()
+	for k,v in lil_menu.items():
+		print("{}) {}".format(k, v))
 
-	f = open("Schools.txt", "w")
-	for line in lines:
-		if line == ("{}\t{}\t{}\n".format("Example_School", "Example_School34", "password")):
-			f.write(line)
-	f.close()
+	user_input = input()
+
+	if user_input == "1":
+		schools = read_file("Schools.txt")
+		for school in schools:
+			if school[0] != "Example_School":
+				try:
+					os.remove("" + school[1])
+				except RuntimeError:
+					continue
+
+		f = open("Schools.txt", "r")
+		lines = f.readlines()
+		f.close()
+
+		f = open("Schools.txt", "w")
+		for line in lines:
+			if line == ("{}\t{}\t{}\n".format("Example_School", "Example_School34", "password")):
+				f.write(line)
+		f.close()
+		os.system("clear")
+		print("Good work, Professor Umbridge! You have successfully erased the existence of all schools\n")
+		umbridge_administration_work()
+	elif user_input == "2":
+		os.system("clear")
+		print("Mission aborted.")
+		umbridge_administration_work()
+	else:
+		os.system("clear")
+		print("ERROR 509: Invalid input")
+		umbridge_administration_work()
 
 
 
