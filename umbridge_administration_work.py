@@ -36,26 +36,32 @@ def umbridge_administration_work():
 			i=0
 			for school in schools:
 				i += 1
-
+			#print("i: " + str(i))
 			rand_int = random.randint(0, i-1)
 			j = 0
 			skool = ""
 			for school in schools:
+				#print("School: " + str(school[1]))
+				#print("Rand int: " + str(rand_int))
+				#print("j: " + str(j))
 				if rand_int == j:
-					skool = school[1] 
+					skool = school[1]
+				j += 1
+			try: 
+				infile = open(skool, "rb")
+				data_dict = pickle.load(infile)
+				num_of_students = len(data_dict["Students"])
+				rand_int = random.randint(0, num_of_students-1)
 
-			infile = open(skool, "rb")
-			data_dict = pickle.load(infile)
-			num_of_students = len(data_dict["Students"])
-			rand_int = random.randint(0, num_of_students-1)
+				del data_dict["Students"][rand_int]
+				infile.close()
 
-			del data_dict["Students"][rand_int]
-			infile.close()
-
-			outfile = open(skool, "wb")
-			pickle.dump(data_dict, outfile)
-			outfile.close()
-
+				outfile = open(skool, "wb")
+				pickle.dump(data_dict, outfile)
+				outfile.close()
+			except FileNotFoundError:
+				#print("NOT FOUND!!!")
+				pass
 			os.system("clear")
 			print("Success! Student successfully expelled\n")
 			umbridge_administration_work()
@@ -102,7 +108,7 @@ def umbridge_administration_work():
 			for school in schools:
 				if rand_int == j:
 					skool = school[1]
-
+				j += 1
 
 			infile = open(skool, "rb")
 			data_dict = pickle.load(infile)

@@ -1,2 +1,4 @@
 Example_School	Example_School34	password
-halie	halie67	chmura
+Halie	Halie90	Chmura
+Go	Go27	Lions
+Go	Go80	TarHeels

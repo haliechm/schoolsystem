@@ -84,10 +84,9 @@ def school_menu(schools_list, school_name, school_id, school_password):
 			print("{}) {}, {}".format(i, stu.last_name, stu.first_name))
 			i+=1
 		infile.close()
-
 		user_input = input()
 		try:
-			if(int(user_input) >=1 or int(user_input) <= len(data_dict["Students"])):
+			if(int(user_input) >=1 and int(user_input) <= len(data_dict["Students"])):
 				del data_dict["Students"][int(user_input)-1]
 				outfile = open(file_name, "wb")
 				pickle.dump(data_dict, outfile)
@@ -120,7 +119,7 @@ def school_menu(schools_list, school_name, school_id, school_password):
 
 		user_input = input()
 		try:
-			if(int(user_input) >= 1 or int(user_input) <= len(data_dict["Professors"])):
+			if(int(user_input) >= 1 and int(user_input) <= len(data_dict["Professors"])):
 				del data_dict["Professors"][int(user_input) - 1]
 				os.system("clear")
 				outfile = open(file_name, "wb")
@@ -138,6 +137,43 @@ def school_menu(schools_list, school_name, school_id, school_password):
 			
 	elif(user_input == "5"):
 		print("5")
+		# how to do this?
+		# import schools list, import school, then change school[3] to it
+		# need to then figure out like dumping the data but without pickling b/c didn't use that here
+		os.system("clear")
+		print("Enter old password:\t")
+		old_password = input()
+		# let have 3 tries
+		num_of_tries = 3
+		while(num_of_tries > 0):
+			if old_password == school_password:
+				os.system("clear")
+				print("Enter new password:\t")
+				new_password = input()
+				# now change school[2] to be the new password somehow
+				#schools = read_file("Schools.txt")
+				#for school in schools:
+					#if school[0] == school_name:
+						#print("found school")
+				f = open("Schools.txt", "r")
+				lines = f.readlines()
+				f.close()
+
+				f = open("Schools.txt", "w")
+				for line in lines:
+					if line != ("{}\t{}\t{}\n".format(school_name, school_id, school_password)):
+						print("getting here as well")
+						f.write(line)
+				new_line = "{}\t{}\t{}\n".format(school_name, school_id, new_password)
+				f.write(new_line)
+				f.close()
+						
+				
+				break
+			else:
+				num_of_tries -= 1
+		school_menu(schools_list, school_name, school_id, school_password)
+		# if get correct then ask to enter new password
 	elif(user_input == "6"):
 		os.system("clear")
 		print("-----Enter any key to exit-----\n\n")
