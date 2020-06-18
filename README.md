@@ -1,6 +1,5 @@
 School system made using Python [via terminal nano]
 ---------------------------------------------------------------
-**WIP**
 
 Making a 'school system' with functionality such as creating a new school, logging in, creating & deleting students/professors/courses, etc.
 Has a Harry Potter twist on it (I was making this while watching Harry Potter ;p)
@@ -16,6 +15,8 @@ To view project
 - navigate to downloaded folder using command line interface (terminal)
 - to start project, use command: python start.py 
 - note: you must have python installed
+
+**need to fix some features (none are necessary though)**
 
 
 Screenshots
