@@ -2,7 +2,7 @@ School system made using Python [via terminal nano]
 ---------------------------------------------------------------
 
 Making a 'school system' with functionality such as creating a new school, logging in, creating & deleting students/professors/courses, etc.
-Has a Harry Potter twist on it (I was making this while watching Harry Potter ;p)
+Has a Harry Potter twist on it (I was making this while watching Harry Potter)
 
 **Professor Dolores' password:** I</3HarryPotter
 
